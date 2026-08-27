@@ -36,12 +36,14 @@ def findAvgError(points):
 
 # Tries to reduce the average error (it does not means that every individual error will decrease even if it tends to happens)
 
+history_error = [] # keep the error during the train for graphs
+
 def fit(data):
     global m, b
     error = findAvgError(data)
-    print(error)
+    history_error.append(error)
     b += error*0.01
-    if error <= 0.0005 and error >= - 0.0005:
+    if error <= 0.5 and error >= - 0.0005:
         return 0
     else:
         m+= error*0.1

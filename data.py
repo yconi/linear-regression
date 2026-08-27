@@ -1,3 +1,5 @@
+import numpy as np
+
 negative_linear_data = [
     [0, 25.2], [1, 22.3], [2, 20.5], [3, 18.6], [4, 15.6], 
     [5, 13.8], [6, 11.1], [7, 8.4], [8, 6.8], [9, 4.4]
@@ -12,3 +14,11 @@ quadratic_data = [
     [0, 3.6], [1, 1.9], [2, 2.5], [3, 4.2], [4, 7.4],
     [5, 11.5], [6, 14.4], [7, 19.3], [8, 26.1], [9, 34.0]
 ]
+
+def generator(n):
+    points = []
+    for i in range(n):
+        y = (np.random.uniform(0.3, 1.2)) * i
+        points.append([i, y])
+
+    return points
