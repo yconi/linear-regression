@@ -9,5 +9,6 @@ At this moment, the model receives an array with some ordered pair as the data f
 ``` py
 exampleData = [0, 4.3], [1, 7.4], [2, 8.3], [3, 10.7], [4, 13.1]
 ```
-After choosing the desired array, the model finds the slope __*m*__ and the intersection __*b*__ to create the first basic function.
+After choosing the desired array, the model finds the slope $m$ and the intersection $b$ to create the first basic function.
+
 $m=\frac{ΔY}{ΔX}$  and  $b=y1[n] -mx[n]$
