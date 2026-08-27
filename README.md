@@ -18,3 +18,20 @@ $$
 $$
 b=y1[n] -mx[n]
 $$
+
+Or:
+
+``` py
+def firstFunction(point1, point2):
+    x1, y1 = point1
+    x2, y2 = point2
+
+    if x1 == x2 or y1 == y2:
+        print(f"Invalid points")
+        return 0
+    else:
+        global a, b
+        a = (y2-y1)/(x2-x1)
+        b = y1 - x1*a 
+
+```
