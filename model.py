@@ -43,7 +43,7 @@ def fit(data):
     error = findAvgError(data)
     history_error.append(error)
     b += error*0.01
-    if error <= 0.5 and error >= - 0.0005:
+    if error <= 0.05 and error >= - 0.05:
         return 0
     else:
         m+= error*0.1
