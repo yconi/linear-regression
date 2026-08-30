@@ -1,3 +1,5 @@
+import math
+
 m = 0
 b = 0
 
@@ -17,34 +19,49 @@ def firstFunction(points):
         m = (y2-y1)/(x2-x1)
         b = y1 - x1*m
 
-# Find how offset the line is from the points
-def findError(points):
+# Standard Error Function: Find the difference (error) between the predicted Y value and the actual Y value.
+
+def findStdError(points):
     error = []
     for point in points:
         x = point[0]
         y = point[1]
-        error.append(y - iteration(x))
-    return error
+        error.append((y - iteration(x)) ** 2)
+    return (sum(error)/(len(error)-2)) ** 0.5
 
-def findAvgError(points):
-    error = []
-    for point in points:
-        x = point[0]
-        y = point[1]
-        error.append(y - iteration(x))
-    return sum(error)/len(error)
-
-# Tries to reduce the average error (it does not means that every individual error will decrease even if it tends to happens)
+# Fit function: Tries to reduce the standard error (it does not means that every individual error will decrease even if it tends to happens)
 
 history_error = [] # keep the error during the train for graphs
+history_m = []
+history_b = []
 
-def fit(data):
+def fit(data, learning_rate=0.01, epochs=100):
     global m, b
-    error = findAvgError(data)
-    history_error.append(error)
-    b += error*0.01
-    if error <= 0.05 and error >= - 0.05:
-        return 0
-    else:
-        m+= error*0.1
-        fit(data)
+
+    history_m.clear()
+    history_b.clear()
+    history_error.clear()
+
+    for _ in range(epochs):
+
+        dm = 0
+        db = 0
+
+        for x, y in data:
+
+            prediction = iteration(x)
+            error = prediction - y
+
+            dm += error * x
+            db += error
+
+        dm /= len(data)
+        db /= len(data)
+
+        m -= learning_rate * dm
+        b -= learning_rate * db
+
+        history_m.append(m)
+        history_b.append(b)
+
+        history_error.append(findStdError(data))

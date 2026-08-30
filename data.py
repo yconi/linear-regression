@@ -18,7 +18,7 @@ quadratic_data = [
 def generator(n):
     points = []
     for i in range(n):
-        y = (np.random.uniform(0.3, 1.2)) * i
+        y = (np.random.uniform(0.3, 2)) * i
         points.append([i, y])
 
     return points
